@@ -1,10 +1,16 @@
 import express, {Request, Response} from 'express';
+import { requireAuth } from '@crescenttheaters/common';
+import { Order } from '../models/orders';
 
 const router = express.Router();
 
 router.get('/api/orders', async (req: Request, res: Response) => {
     
-    res.send({});  
+    const orders = Order.find({
+        userId: req.currentUser!.id
+    }).populate('ticket');
+
+    res.send({orders});  
 
 });
 
