@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { updateIfCurrentPlugin } from "mongoose-update-if-current";
 import { OrderStatus } from '@crescenttheaters/common';
 import { TicketDoc } from "./tickets";
 
@@ -16,7 +17,8 @@ interface OrderAttrs {
 interface OrderDoc extends mongoose.Document {
     userId: string;
     status: OrderStatus;
-    expiresAt: Date;   
+    expiresAt: Date; 
+    version: number;  
     ticket: TicketDoc;
 }
 
@@ -55,6 +57,9 @@ const ordersSchema = new mongoose.Schema(
         }
     }
 }); 
+
+ordersSchema.set('versionKey', 'version');
+ordersSchema.plugin(updateIfCurrentPlugin);
 
 ordersSchema.statics.build = (attrs: OrderAttrs) => {
     return new Order(attrs);

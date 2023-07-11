@@ -33,6 +33,7 @@ router.post('/api/tickets', requireAuth, [
         id: ticket.id,
         title: ticket.title,
         price: ticket.price,
+        version: ticket.version,
         userId: ticket.userId
     });
 

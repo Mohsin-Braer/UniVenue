@@ -4,7 +4,8 @@ import {
     validateRequest,
     NotFoundError, 
     NotAuthorizedError,
-    requireAuth } from '@crescenttheaters/common';
+    requireAuth, 
+    BadRequestError} from '@crescenttheaters/common';
 import { Ticket } from '../models/tickets';
 
 import { TicketUpdatedPublisher } from '../events/publishers/ticket-updated-publisher';
@@ -28,6 +29,10 @@ router.put('api/tickets/:id', requireAuth, [
         throw new NotFoundError();
     }
 
+    if(ticket.orderId){
+        throw new BadRequestError('Ticket is reserved');
+    }
+
     if(ticket.userId != req.currentUser!.id){
         throw new NotAuthorizedError();
     }
@@ -42,6 +47,7 @@ router.put('api/tickets/:id', requireAuth, [
         id: ticket.id,
         title: ticket.title,
         price: ticket.price,
+        version: ticket.version,
         userId: ticket.userId
     });
 

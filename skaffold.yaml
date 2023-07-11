@@ -34,7 +34,7 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: mbraer/orders      #us.gcr.io/thecrescenttheater/tickets
+    - image: mbraer/orders      #us.gcr.io/thecrescenttheater/orders
       context: orders
       docker:
         dockerfile: Dockerfile
