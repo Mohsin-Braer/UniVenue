@@ -1,9 +1,9 @@
 import { Message } from "node-nats-streaming";
 import mongoose from "mongoose";
-import { TicketCreatedEvent } from "@cygnetops/common-v2";
+import { TicketCreatedEvent } from "@crescenttheaters/common";
 import { TicketCreatedListener } from "../ticket-created-listener";
 import { natsWrapper } from "../../../nats-wrapper";
-import { Ticket } from "../../../models/ticket";
+import { TicketOrder } from "../../../models/tickets";
 
 const setup = async () => {
   // create an instance of the listener
@@ -33,8 +33,8 @@ it("creates and saves a ticket", async () => {
   // call the onMessage function with the data object + message object
   await listener.onMessage(data, msg);
 
-  // write assertions to make sure a ticket was created!
-  const ticket = await Ticket.findById(data.id);
+  // write assertions to make sure a ticket was created
+  const ticket = await TicketOrder.findById(data.id);
 
   expect(ticket).toBeDefined();
   expect(ticket!.title).toEqual(data.title);

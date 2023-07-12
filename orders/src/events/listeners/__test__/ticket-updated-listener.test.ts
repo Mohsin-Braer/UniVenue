@@ -1,16 +1,16 @@
 import mongoose from "mongoose";
 import { Message } from "node-nats-streaming";
-import { TicketUpdatedEvent } from "@cygnetops/common-v2";
+import { TicketUpdatedEvent } from "@crescenttheaters/common";
 import { TicketUpdatedListener } from "../ticket-updated-listener";
 import { natsWrapper } from "../../../nats-wrapper";
-import { Ticket } from "../../../models/ticket";
+import { TicketOrder } from "../../../models/tickets";
 
 const setup = async () => {
   // Create a listener
   const listener = new TicketUpdatedListener(natsWrapper.client);
 
   // Create and save a ticket
-  const ticket = Ticket.build({
+  const ticket = TicketOrder.build({
     id: new mongoose.Types.ObjectId().toHexString(),
     title: "concert",
     price: 20,
@@ -41,7 +41,7 @@ it("finds, updates, and saves a ticket", async () => {
 
   await listener.onMessage(data, msg);
 
-  const updatedTicket = await Ticket.findById(ticket.id);
+  const updatedTicket = await TicketOrder.findById(ticket.id);
 
   expect(updatedTicket!.title).toEqual(data.title);
   expect(updatedTicket!.price).toEqual(data.price);
