@@ -5,10 +5,13 @@ import { app } from '../app';
 import { sign } from 'jsonwebtoken';
 
 declare global {
-    function signin(): string[];
+    function signin(id?: string): string[];
 }
 
 jest.mock('../nats-wrapper');
+
+// Set stripe key outside of beforeAll, key will be required asap once stripe.ts instantiated
+process.env.STRIPE_KEY = '';
 
 let mongo: any;
 beforeAll(async () => {  //A hook that runs before any else is executed in the file
@@ -41,11 +44,11 @@ afterAll(async () => { //after all tests are completed, hook is called
 });
 
 
-global.signin = () => { //Constructing encoded JWT for testing purposes ONLY
+global.signin = (id?: string) => { //Constructing encoded JWT for testing purposes ONLY
 
     // Build JWT Payload { id, email }
     const payload = {
-        id: new mongoose.Types.ObjectId().toHexString(),
+        id: id || new mongoose.Types.ObjectId().toHexString(),
         email: "test@test.com"
     };
 

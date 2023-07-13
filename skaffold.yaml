@@ -18,7 +18,7 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: mbraer/client      #us.gcr.io/thecrescenttheater/clients
+    - image: mbraer/client      #us.gcr.io/thecrescenttheater/client
       context: client
       docker:
         dockerfile: Dockerfile
@@ -44,6 +44,14 @@ build:
             dest: .
     - image: mbraer/expiration      #us.gcr.io/thecrescenttheater/expiration
       context: expiration
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: mbraer/payments      #us.gcr.io/thecrescenttheater/payments
+      context: payments
       docker:
         dockerfile: Dockerfile
       sync:

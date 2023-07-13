@@ -3,11 +3,9 @@ import 'express-async-errors';
 import cookieSession from 'cookie-session';
 import { json } from 'body-parser';
 import { errorHandler, NotFoundError, currentUser } from '@crescenttheaters/common';
+import { createPaymentRouter } from './routes/new';
 
-import { createTicketRouter } from './routes/new';
-import { showTicketsRouter } from './routes/show';
-import { indexTicketsRouter } from './routes/index';
-import { updateTicketRouter } from './routes/update';
+
 
 
 const app = express();
@@ -22,10 +20,7 @@ app.use(
 );
 app.use(currentUser);
 
-app.use(createTicketRouter);
-app.use(showTicketsRouter);
-app.use(indexTicketsRouter);
-app.use(updateTicketRouter);
+app.use(createPaymentRouter);
 
 
 
