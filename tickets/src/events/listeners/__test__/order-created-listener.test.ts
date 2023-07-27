@@ -1,19 +1,34 @@
 import { Message } from "node-nats-streaming";
 import mongoose from "mongoose";
-import { OrderCreatedEvent, OrderStatus } from "@crescenttheaters/common";
+import { OrderCreatedEvent, OrderStatus, EventCategory } from "@crescenttheaters/common";
 import { OrderCreatedListener } from "../order-created-listener";
 import { natsWrapper } from "../../../nats-wrapper";
 import { Ticket } from "../../../models/tickets";
+import { Location } from "../../../models/location";
 
 const setup = async () => {
   // Create an instance of the listener
   const listener = new OrderCreatedListener(natsWrapper.client);
+
+  // Create and save a new location
+  const location = Location.build({
+    roomType: 'classroom',
+    roomId: 'S250', 
+    university: 'Boston College',
+    city: 'Boston',
+    state: 'MA',
+    imgUrl: 'fjnjndsjnsd'
+  });
+
 
   // Create and save a ticket
   const ticket = Ticket.build({
     title: "concert",
     price: 99,
     userId: "asdf",
+    date: new Date('2023-07-15'),
+    category: EventCategory.Community,
+    location,
   });
   await ticket.save();
 

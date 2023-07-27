@@ -4,13 +4,13 @@ import { Order } from '../models/orders';
 
 const router = express.Router();
 
-router.get('/api/orders', async (req: Request, res: Response) => {
+router.get('/api/orders', requireAuth, async (req: Request, res: Response) => {
     
-    const orders = Order.find({
+    const orders = await Order.find({
         userId: req.currentUser!.id
     }).populate('ticket');
 
-    res.send({orders});  
+    res.send(orders);  
 
 });
 

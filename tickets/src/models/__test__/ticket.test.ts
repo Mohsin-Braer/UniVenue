@@ -1,11 +1,25 @@
 import { Ticket } from "../tickets";
+import { Location } from "../location";
+import { EventCategory } from "@crescenttheaters/common";
 
 it('implements optimistic concurrency control', async () => {
     
+    const location = Location.build({
+        roomType: 'classroom',
+        roomId: 'S124',
+        university: 'Boston University',
+        city: 'Boston',
+        state: 'MA',
+        imgUrl: 'fhwfqcnqbwrhf'
+    })
+
     const ticket = Ticket.build({
         title: 'sports',
         price: 24,
-        userId: 'fhsvfhfbdf'
+        userId: 'fhsvfhfbdf',
+        date: new Date(),
+        category: EventCategory.Community,
+        location,
     });
 
     await ticket.save();
@@ -30,10 +44,22 @@ it('implements optimistic concurrency control', async () => {
 });
 
 it('increments version number after every save to ticket', async () => {
+    const location = Location.build({
+        roomType: 'classroom',
+        roomId: 'S124',
+        university: 'Boston University',
+        city: 'Boston',
+        state: 'MA',
+        imgUrl: 'fhwfqcnqbwrhf'
+    })
+
     const ticket = Ticket.build({
         title: 'sports',
         price: 24,
-        userId: 'fhsvfhfbdf'
+        userId: 'fhsvfhfbdf',
+        date: new Date(),
+        category: EventCategory.Community,
+        location,
     });
 
     await ticket.save();

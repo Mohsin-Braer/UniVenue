@@ -32,7 +32,7 @@ spec:
                   name: jwt-secret
                   key: JWT_KEY
             - name: STRIPE_KEY
-              valuefrom:
+              valueFrom:
                 secretKeyRef:
                   name: stripe-secret
                   key: STRIPE_KEY

@@ -45,7 +45,7 @@ const ordersSchema = new mongoose.Schema(
    },
    ticket: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Ticket'
+        ref: 'TicketOrder'
    }
 
 }, {
@@ -53,7 +53,6 @@ const ordersSchema = new mongoose.Schema(
         transform(doc, ret){
             ret.id = ret._id;
             delete ret._id; 
-            delete ret._v;
         }
     }
 }); 

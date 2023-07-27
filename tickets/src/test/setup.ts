@@ -2,10 +2,12 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 import request from 'supertest'
 import mongoose from 'mongoose';
 import { app } from '../app';
-import { sign } from 'jsonwebtoken';
+// import { sign } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 
 declare global {
-    function signin(): string[];
+    // function signin(): string[];
+    var signin: () => string[];
 }
 
 jest.mock('../nats-wrapper');
@@ -50,7 +52,7 @@ global.signin = () => { //Constructing encoded JWT for testing purposes ONLY
     };
 
     // Create JWT
-    const token = sign(payload, process.env.JWT_KEY!)
+    const token = jwt.sign(payload, process.env.JWT_KEY!)
 
     // Build session obj {jwt:MY_JWT}
     const session = { jwt: token };

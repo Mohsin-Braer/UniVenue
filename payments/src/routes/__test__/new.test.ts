@@ -13,7 +13,7 @@ it('returns 404 when purchasing order that does not exist', async () => {
         .post('/api/payments')
         .set('Cookie', global.signin())
         .send({
-            token: 'fbadhfbf',
+            token: 'tok_visa',
             orderId: new mongoose.Types.ObjectId().toHexString()  
         })
         .expect(404)
@@ -34,7 +34,7 @@ it('returns 401 when purchasing order that does not belong to user', async () =>
         .post('/api/payments')
         .set('Cookie', global.signin())
         .send({
-            token: 'fbadhfbf',
+            token: 'tok_visa',
             orderId: order.id,
         })
         .expect(401)
@@ -56,7 +56,7 @@ it('returns 400 when purchasing order thats has been cancelled', async () => {
         .post('/api/payments')
         .set('Cookie', global.signin(userId))
         .send({
-            token: 'fbadhfbf',
+            token: 'tok_visa',
             orderId: order.id  
         })
         .expect(400)

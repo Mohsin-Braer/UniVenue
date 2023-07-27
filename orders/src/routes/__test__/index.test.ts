@@ -1,12 +1,31 @@
 import request from 'supertest';
+import mongoose from 'mongoose';
 import { app } from '../../app';
 import { Order } from '../../models/orders';
 import { TicketOrder } from '../../models/tickets';
+import { EventCategory } from '@crescenttheaters/common';
+import { LocationOrder } from '../../models/location';
+
+
 
 const buildTicket = async () => {
+  const location = LocationOrder.build({
+    roomId: 'S123',
+    roomType: 'Room',
+    university: 'Boston College',
+    city: 'Boston',
+    state: 'MA',
+    imgUrl: 'knffswjf'
+  });
+  await location.save();
+
   const ticket = TicketOrder.build({
+    id: new mongoose.Types.ObjectId().toHexString(),
     title: 'concert',
     price: 20,
+    date: new Date('2023-07-15'),
+    category: EventCategory.Community,
+    location, 
   });
   await ticket.save();
 

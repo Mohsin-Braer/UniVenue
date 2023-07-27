@@ -1,13 +1,32 @@
 import request from 'supertest';
+import mongoose from 'mongoose';
 import { app } from '../../app';
+import { EventCategory } from '@crescenttheaters/common';
 import { TicketOrder } from '../../models/tickets';
+import { LocationOrder } from '../../models/location';
+
+
 it('fetches the order', async () => {
   // Create a ticket
-  const ticket = TicketOrder.build({
-    title: 'concert',
-    price: 20,
+  const location = LocationOrder.build({
+    roomId: 'S123',
+    roomType: 'Room',
+    university: 'Boston College',
+    city: 'Boston',
+    state: 'MA',
+    imgUrl: 'knffswjf'
   });
-  await ticket.save();
+  await location.save();
+
+  const ticket = TicketOrder.build({
+      id: new mongoose.Types.ObjectId().toHexString(),
+      title: 'concert',
+      price: 20,
+      date: new Date('2023-07-15'),
+      category: EventCategory.Community,
+      location,
+  });
+  ticket.save();
 
   const user = global.signin();
   // make a request to build an order with this ticket
@@ -27,13 +46,28 @@ it('fetches the order', async () => {
   expect(fetchedOrder.id).toEqual(order.id);
 });
 
+
 it('returns an error if one user tries to fetch another users order', async () => {
   // Create a ticket
-  const ticket = TicketOrder.build({
-    title: 'concert',
-    price: 20,
+  const location = LocationOrder.build({
+    roomId: 'S123',
+    roomType: 'Room',
+    university: 'Boston College',
+    city: 'Boston',
+    state: 'MA',
+    imgUrl: 'knffswjf'
   });
-  await ticket.save();
+  await location.save();
+
+  const ticket = TicketOrder.build({
+      id: new mongoose.Types.ObjectId().toHexString(),
+      title: 'concert',
+      price: 20,
+      date: new Date('2023-07-15'),
+      category: EventCategory.Community,
+      location,
+  });
+  ticket.save();
 
   const user = global.signin();
   // make a request to build an order with this ticket

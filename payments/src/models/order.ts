@@ -20,7 +20,7 @@ interface OrderDoc extends mongoose.Document{
 
 interface OrderModel extends mongoose.Model<OrderDoc>{
     build(attrs: OrderAttrs): OrderDoc;
-    findByEvent(event: {id: string, version: number}): Promise<OrderDoc | null> //find order associated with passed in event plus version # - 1
+    findByEvent(event: {id: string; version: number;}): Promise<OrderDoc | null> //find order associated with passed in event plus version # - 1
 }
 
 const OrderSchema = new mongoose.Schema({
@@ -58,9 +58,9 @@ OrderSchema.statics.build = (attrs: OrderAttrs) =>  {
     });
 }
 
-OrderSchema.statics.findByEvent = async (event: {id: string, version: number}) => {
+OrderSchema.statics.findByEvent = async (event: {id: string; version: number;}) => {
     return OrderPayment.findOne({
-        id: event.id,
+        _id: event.id,
         version: event.version - 1
     });
 };

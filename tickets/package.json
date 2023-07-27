@@ -10,7 +10,7 @@
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node",
-    "setupFileAfterEnv": [
+    "setupFilesAfterEnv": [
       "./src/test/setup.ts"
     ]
   },
@@ -18,7 +18,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@crescenttheaters/common": "^1.0.3",
+    "@crescenttheaters/common": "1.0.22",
     "@types/cookie-session": "^2.0.44",
     "@types/express": "^4.17.17",
     "@types/jsonwebtoken": "^9.0.2",

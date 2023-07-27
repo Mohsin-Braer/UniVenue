@@ -21,5 +21,7 @@ export class OrderCancelledListener extends Listener<OrderCancelledEvent>{
             status: OrderStatus.Cancelled
         })
         await order.save();
+
+        msg.ack();
     }
 }

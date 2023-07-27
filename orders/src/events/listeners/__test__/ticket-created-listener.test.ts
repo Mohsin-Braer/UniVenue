@@ -1,6 +1,6 @@
 import { Message } from "node-nats-streaming";
 import mongoose from "mongoose";
-import { TicketCreatedEvent } from "@crescenttheaters/common";
+import { EventCategory, TicketCreatedEvent } from "@crescenttheaters/common";
 import { TicketCreatedListener } from "../ticket-created-listener";
 import { natsWrapper } from "../../../nats-wrapper";
 import { TicketOrder } from "../../../models/tickets";
@@ -16,6 +16,17 @@ const setup = async () => {
     title: "concert",
     price: 10,
     userId: new mongoose.Types.ObjectId().toHexString(),
+    date: '03/04/2024',
+    category: EventCategory.Community, 
+    location: {
+        roomType: 'Alumni Stadium',
+        roomId: 'S123',
+        university: 'Boston College',
+        city: 'Boston',
+        state: 'MA',
+        imgUrl: 'adjfshbfsfhvbsca', 
+    }
+
   };
 
   // create a fake message object

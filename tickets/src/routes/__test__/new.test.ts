@@ -14,7 +14,7 @@ it('has a route handler listening to /api/tickets for post requests', async () =
 
 it('can only be accessed if the user is signed in', async () => {
     await request(app)
-        .post('api/tickets')
+        .post('/api/tickets')
         .send({})
         .expect(401);
         
@@ -22,7 +22,7 @@ it('can only be accessed if the user is signed in', async () => {
 
 it('returns a status other than 401 if the user is signed in', async () => {
     const response = await request(app)
-        .post('api/tickets')
+        .post('/api/tickets')
         .set('Cookie', global.signin())
         .send({});
 
@@ -36,7 +36,15 @@ it('returns an error if an invalid title is provided', async () => {
         .set('Cookie', global.signin())
         .send({
             title: '',
-            price: 10
+            price: 10,
+            date: '2023-07-15',
+            roomType: 'classroom',
+            roomId: 'S250', 
+            university: 'Boston College',
+            city: 'Boston',
+            state: 'MA',
+            category: 'study',
+            imgUrl: 'fjnjndsjnsd'
         })
         .expect(400);
 
@@ -44,8 +52,15 @@ it('returns an error if an invalid title is provided', async () => {
         .post('/api/tickets') 
         .set('Cookie', global.signin())
         .send({
-            title: '',
-            price: 10
+            price: 10,
+            date: '2023-07-15',
+            roomType: 'classroom',
+            roomId: 'S250', 
+            university: 'Boston College',
+            city: 'Boston',
+            state: 'MA',
+            category: 'study',
+            imgUrl: 'fjnjndsjnsd'
         })
         .expect(400);
 });
@@ -56,7 +71,15 @@ it('returns an error if an invalid prices is provided', async () => {
         .set('Cookie', global.signin())
         .send({
             title: 'Boston Celtics RND 1 GM 1',
-            price: -10
+            price: -10,
+            date: '2023-07-15',
+            roomType: 'classroom',
+            roomId: 'S250', 
+            university: 'Boston College',
+            city: 'Boston',
+            state: 'MA',
+            category: 'study',
+            imgUrl: 'fjnjndsjnsd'
         })
         .expect(400);
 
@@ -64,7 +87,15 @@ it('returns an error if an invalid prices is provided', async () => {
         .post('/api/tickets') 
         .set('Cookie', global.signin())
         .send({
-            title: 'JAY-Z - TD Garden'
+            title: 'JAY-Z - TD Garden',
+            date: '2023-07-15',
+            roomType: 'classroom',
+            roomId: 'S250', 
+            university: 'Boston College',
+            city: 'Boston',
+            state: 'MA',
+            category: 'study',
+            imgUrl: 'fjnjndsjnsd'
         })
         .expect(400);
 });
@@ -79,7 +110,15 @@ it('creates a ticket with valid input', async () => {
         .set('Cookie', global.signin())
         .send({
             title: 'FC Barcelona v. Real Madrid - October 29th, 2023',
-            price: 128.54
+            price: 128.54,
+            date: '2023-07-15',
+            roomType: 'classroom',
+            roomId: 'S250', 
+            university: 'Boston College',
+            city: 'Boston',
+            state: 'MA',
+            category: 'study',
+            imgUrl: 'fjnjndsjnsd'
         })
         .expect(201);
 
@@ -87,6 +126,7 @@ it('creates a ticket with valid input', async () => {
     expect(tickets.length).toEqual(1);
     expect(tickets[0].title).toEqual('FC Barcelona v. Real Madrid - October 29th, 2023') 
     expect(tickets[0].price).toEqual(128.54);
+
 });
 
 it('publishes an event', async () => {
@@ -97,7 +137,15 @@ it('publishes an event', async () => {
         .set('Cookie', global.signin())
         .send({
             title: 'FC Barcelona v. Real Madrid - October 29th, 2023',
-            price: 128.54
+            price: 128.54,
+            date: '2023-07-15',
+            roomType: 'classroom',
+            roomId: 'S250', 
+            university: 'Boston College',
+            city: 'Boston',
+            state: 'MA',
+            category: 'study',
+            imgUrl: 'fjnjndsjnsd'
         })
         .expect(201);
     

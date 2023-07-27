@@ -1,19 +1,33 @@
 import mongoose from "mongoose";
 import { Message } from "node-nats-streaming";
-import { TicketUpdatedEvent } from "@crescenttheaters/common";
+import { TicketUpdatedEvent, EventCategory } from "@crescenttheaters/common";
 import { TicketUpdatedListener } from "../ticket-updated-listener";
 import { natsWrapper } from "../../../nats-wrapper";
 import { TicketOrder } from "../../../models/tickets";
+import { LocationOrder } from "../../../models/location";
 
 const setup = async () => {
   // Create a listener
   const listener = new TicketUpdatedListener(natsWrapper.client);
 
   // Create and save a ticket
+  const location = LocationOrder.build({
+    roomId: 'S123',
+    roomType: 'Room',
+    university: 'Boston College',
+    city: 'Boston',
+    state: 'MA',
+    imgUrl: 'knffswjf'
+  });
+  await location.save();
+
   const ticket = TicketOrder.build({
-    id: new mongoose.Types.ObjectId().toHexString(),
-    title: "concert",
-    price: 20,
+      id: new mongoose.Types.ObjectId().toHexString(),
+      title: 'concert',
+      price: 20,
+      date: new Date('2023-07-15'),
+      category: EventCategory.Community,
+      location,
   });
   await ticket.save();
 
@@ -22,8 +36,8 @@ const setup = async () => {
     id: ticket.id,
     version: ticket.version + 1,
     title: "new concert",
-    price: 999,
-    userId: "ablskdjf",
+    price: 205,
+    userId: "sfvjdjnvd",
   };
 
   // Create a fake msg object

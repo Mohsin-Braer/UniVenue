@@ -9,7 +9,7 @@ jest.mock('../../nats-wrapper');
 it('returns a 404 if the provided id does not exist', async () => {
     const id = new mongoose.Types.ObjectId().toHexString();
     await request(app)
-        .put(`api/tickets/${id}`)
+        .put(`/api/tickets/${id}`)
         .set('Cookie', global.signin())
         .send({
             title: 'djhfsdffvdvf',
@@ -21,7 +21,7 @@ it('returns a 404 if the provided id does not exist', async () => {
 it('returns a 401 if the user is not authenticated', async () => {
     const id = new mongoose.Types.ObjectId().toHexString();
     await request(app)
-        .put(`api/tickets/${id}`)
+        .put(`/api/tickets/${id}`)
         .send({
             title: 'djhfsdffvdvf',
             price: 250
@@ -29,33 +29,50 @@ it('returns a 401 if the user is not authenticated', async () => {
         .expect(401)
 });
 
-it('returns a 401 i the user does not own the ticket', async () => {
+it('returns a 401 if the user does not own the ticket', async () => {
     const response = await request(app)
         .post('/api/tickets')
         .set('Cookie', global.signin())
         .send({
-            title: 'fdjrjfvbv',
-            price: 5
-        }); 
+            title: 'testingticket',
+            price: 5,
+            date: '2023-07-15',
+            roomType: 'classroom',
+            roomId: 'S250', 
+            university: 'Boston College',
+            city: 'Boston',
+            state: 'MA',
+            category: 'study',
+            imgUrl: 'fjnjndsjnsd'
+        })
+        .expect(201); 
         
     await request(app)
         .put(`/api/tickets/${response.body.id}`)
         .set('Cookie', global.signin())
         .send({
-            title: 'testingticket',
+            title: 'ckmfnjvsn',
             price: 26
         })
         .expect(401);
 });
 
-it('returns a 400 if the user provides an invalid titles or price', async () => {
+it('returns a 400 if the user provides an invalid title or price', async () => {
     const cookie = global.signin();
     const response = await request(app)
         .post('/api/tickets')
         .set('Cookie', cookie)
         .send({
             title: 'fdjrjfvbv',
-            price: 5
+            price: 5,
+            date: '2023-07-15',
+            roomType: 'classroom',
+            roomId: 'S250', 
+            university: 'Boston College',
+            city: 'Boston',
+            state: 'MA',
+            category: 'study',
+            imgUrl: 'fjnjndsjnsd'
         }); 
     
     await request(app)
@@ -85,7 +102,15 @@ it('Updates the ticket with valid inputs', async () => {
         .set('Cookie', cookie)
         .send({
             title: 'Testing',
-            price: 20
+            price: 20,
+            date: '2023-07-15',
+            roomType: 'classroom',
+            roomId: 'S250', 
+            university: 'Boston College',
+            city: 'Boston',
+            state: 'MA',
+            category: 'study',
+            imgUrl: 'fjnjndsjnsd'
         }); 
     
     await request(app)
@@ -113,7 +138,15 @@ it('publishes an event', async () => {
         .set('Cookie', cookie)
         .send({
             title: 'Testing',
-            price: 20
+            price: 20,
+            date: '2023-07-15',
+            roomType: 'classroom',
+            roomId: 'S250', 
+            university: 'Boston College',
+            city: 'Boston',
+            state: 'MA',
+            category: 'study',
+            imgUrl: 'fjnjndsjnsd'
         }); 
     
     await request(app)
@@ -136,13 +169,24 @@ it('rejects edits to ticket if reserved', async () => {
         .send({
             title: 'Testing',
             price: 20,
-        }); 
-    
+            date: '2023-07-15',
+            roomType: 'classroom',
+            roomId: 'S250', 
+            university: 'Boston College',
+            city: 'Boston',
+            state: 'MA',
+            category: 'study',
+            imgUrl: 'fjnjndsjnsd'
+        })
+        .expect(201);
+
     const ticket = await Ticket.findById(response.body.id);
+
     ticket!.set({
-        orderid: new mongoose.Types.ObjectId().toHexString()
+        orderId: new mongoose.Types.ObjectId().toHexString()
     })
     await ticket!.save();
+
     
     await request(app)
         .put(`/api/tickets/${response.body.id}`)

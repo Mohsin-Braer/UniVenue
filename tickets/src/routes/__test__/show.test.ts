@@ -16,7 +16,15 @@ it('returns the ticket if ticket is found', async () => {
         .set('Cookie', global.signin())
         .send({
             title: 'Concert',
-            price: 50
+            price: 50,
+            date: '2023-07-15',
+            roomType: 'Auditorium',
+            roomId: 'S250', 
+            university: 'Boston College',
+            city: 'Boston',
+            state: 'MA',
+            category: 'study',
+            imgUrl: 'fjnjndsjnsd'
         })
         .expect(201);
     
@@ -26,6 +34,6 @@ it('returns the ticket if ticket is found', async () => {
         .expect(200);
     
     expect(ticketResponse.body.title).toEqual('Concert'); 
-    expect(ticketResponse.body.price).toEqual(20); 
+    expect(ticketResponse.body.price).toEqual(50); 
 });
 

@@ -1,14 +1,31 @@
+import mongoose from 'mongoose';
 import request from 'supertest';
 import { app } from '../../app';
 import { TicketOrder } from '../../models/tickets';
+import { LocationOrder } from '../../models/location';
 import { Order, OrderStatus } from '../../models/orders';
 import { natsWrapper } from '../../nats-wrapper';
+import { EventCategory } from '@crescenttheaters/common';
 
 it('marks an order as cancelled', async () => {
+
+  const location = LocationOrder.build({
+    roomType: 'classroom',
+    roomId: 'S250', 
+    university: 'Boston College',
+    city: 'Boston',
+    state: 'MA',
+    imgUrl: 'fjnjndsjnsd'
+  });
+
   // create a ticket with Ticket Model
   const ticket = TicketOrder.build({
+    id: new mongoose.Types.ObjectId().toHexString(),
     title: 'concert',
     price: 20,
+    date: new Date('2023-07-15'),
+    category: EventCategory.Community,
+    location,
   });
   await ticket.save();
 
@@ -34,9 +51,23 @@ it('marks an order as cancelled', async () => {
 });
 
 it('emits a order cancelled event', async () => {
+  const location = LocationOrder.build({
+    roomType: 'classroom',
+    roomId: 'S250', 
+    university: 'Boston College',
+    city: 'Boston',
+    state: 'MA',
+    imgUrl: 'fjnjndsjnsd'
+  });
+
+
   const ticket = TicketOrder.build({
+    id: new mongoose.Types.ObjectId().toHexString(),
     title: 'concert',
     price: 20,
+    date: new Date('2023-07-15'),
+    category: EventCategory.Community,
+    location,
   });
   await ticket.save();
 

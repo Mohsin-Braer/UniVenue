@@ -1,5 +1,5 @@
-import { NotAuthorizedError, NotFoundError, requireAuth } from '@crescenttheaters/common';
 import express, {Request, Response} from 'express';
+import { NotAuthorizedError, NotFoundError, requireAuth } from '@crescenttheaters/common';
 import { Order, OrderStatus } from '../models/orders';
 
 import { OrderCancelledPublisher } from '../events/publishers/order-cancelled-publisher';
@@ -15,7 +15,7 @@ router.delete('/api/orders/:orderId', requireAuth, async (req: Request, res: Res
     const order = await Order.findById(orderId).populate('ticket');
 
     if(!order){
-        throw new NotFoundError
+        throw new NotFoundError();
     }
 
     if(order.userId !== req.currentUser!.id){
@@ -27,9 +27,10 @@ router.delete('/api/orders/:orderId', requireAuth, async (req: Request, res: Res
 
     new OrderCancelledPublisher(natsWrapper.client).publish({
         id: order.id,
+        version: order.version,
         ticket: {
             id: order.ticket.id
-        }
+        },
     });
     
     

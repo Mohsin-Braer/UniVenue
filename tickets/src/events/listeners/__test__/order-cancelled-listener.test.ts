@@ -1,18 +1,32 @@
 import mongoose from "mongoose";
 import { Message } from "node-nats-streaming";
-import { OrderCancelledEvent } from "@crescenttheaters/common";
+import { EventCategory, OrderCancelledEvent } from "@crescenttheaters/common";
 import { natsWrapper } from "../../../nats-wrapper";
 import { OrderCancelledListener } from "../order-cancelled-listener";
 import { Ticket } from "../../../models/tickets";
+import { Location } from "../../../models/location";
 
 const setup = async () => {
   const listener = new OrderCancelledListener(natsWrapper.client);
 
   const orderId = new mongoose.Types.ObjectId().toHexString();
+
+    const location = Location.build({
+        roomType: 'classroom',
+        roomId: 'S250', 
+        university: 'Boston College',
+        city: 'Boston',
+        state: 'MA',
+        imgUrl: 'fjnjndsjnsd'
+    });
+
   const ticket = Ticket.build({
     title: "concert",
     price: 20,
     userId: "asdf",
+    date: new Date('2023-07-15'),
+    category: EventCategory.Community,
+    location,
   });
   ticket.set({ orderId });
   await ticket.save();

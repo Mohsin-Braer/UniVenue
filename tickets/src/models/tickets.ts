@@ -1,10 +1,18 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import { updateIfCurrentPlugin } from "mongoose-update-if-current";
+
+import { EventCategory } from "@crescenttheaters/common";
+import { LocationDoc } from "./location";
+
+
 
 // Properties of submitted ticket to TicketModel
 interface TicketAttrs {
     title: string;
     price: number;
+    date: Date;
+    category: EventCategory;
+    location: LocationDoc;
     userId: string;
 }
 
@@ -12,9 +20,12 @@ interface TicketAttrs {
 interface TicketDoc extends mongoose.Document{
     title: string;
     price: number;
+    date: Date;
+    category: EventCategory;
+    location: LocationDoc;
     userId: string;
     version: number;
-    orderId?: string;
+    orderId?: string; //indicates if a ticket is reserved
 }
 
 // Properties of TicketModel
@@ -22,7 +33,8 @@ interface TicketModel extends mongoose.Model<TicketDoc>{
     build(attrs: TicketAttrs): TicketDoc;
 }
 
-const ticketSchema = new mongoose.Schema({
+const ticketSchema = new mongoose.Schema(
+{
     title: {
         type: String,
         required: true
@@ -35,7 +47,21 @@ const ticketSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    order: {
+    date: {
+        type: mongoose.Schema.Types.Date,
+        required: true
+    },
+    category: {
+        type: String,
+        required: true,
+        enum: Object.values(EventCategory),
+        default: EventCategory.Other
+    },
+    location: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Location'
+    },
+    orderId: {
         type: String,
         required: false
     }

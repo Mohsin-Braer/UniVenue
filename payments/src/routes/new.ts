@@ -32,6 +32,8 @@ router.post('/api/payments', requireAuth,
 
     const order = await OrderPayment.findById(orderId);
 
+    console.log("KEY: " + process.env.STRIPE_KEY);
+
     if(!order){
         throw new NotFoundError();
     }
@@ -45,8 +47,8 @@ router.post('/api/payments', requireAuth,
     }
 
     const charge = await stripe.charges.create({
-        currency: 'usd',
         amount: order.price * 100,
+        currency: 'usd',
         source: token
     });
 
