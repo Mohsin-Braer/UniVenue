@@ -17,7 +17,7 @@ export interface LocationDoc extends mongoose.Document{
     city: string;
     state: string;
     country?: string;
-    imageUrl: string;
+    imgUrl: string;
 }
 
 interface LocationModel extends mongoose.Model<LocationDoc>{
@@ -52,7 +52,7 @@ const locationSchema = new mongoose.Schema(
     }, 
     imgUrl: {
         type: String,
-        required: true,
+        required: false,
     }
 }, {
     toJSON: {
@@ -68,6 +68,7 @@ locationSchema.statics.build = (attrs: LocationAttrs) => {
 }
 
 const Location = mongoose.model<LocationDoc, LocationModel>('Location', locationSchema);
+
 
 export { Location };
 

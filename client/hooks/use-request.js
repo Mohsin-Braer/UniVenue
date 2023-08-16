@@ -16,10 +16,10 @@ const useRequest = ({url, method, body, onSuccess}) => {
             return response.data;
         } catch(err){
             setErrors(
-                <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4" role="alert">
+                <div className="bg-red-100 border-l-4 rounded-lg border-red-500 text-red-700 p-4 space-y-7" role="alert">
                         <p className='font-bold'>Warning</p>
                         <ul className="my-0">
-                            {err.response.data.errors.map(err => (
+                            {err.response.data.errors.map((err) => (
                                 <li key={err.message}>{err.message}</li>
                             ))}
                         </ul>

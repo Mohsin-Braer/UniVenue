@@ -1,18 +1,22 @@
 import Header from "../../components/auth-components/header";
-import SignupBody from "../../components/auth-components/signup-body";
+import SigninBody from "../../components/auth-components/signin-body";
 
 const SignInPage = () => {
-    return (   
-        <div className="my-20">
-            <Header
-                heading = 'Sign into your account'
-                paragraph="Don't have an account? "
-                linkName="Sign Up"
-                linkUrl="/"
-            />
+    return ( 
+        <section className="mx-auto max-w-4xl mt-20 animate-fadeOne">
+            <div className="">
+                <Header
+                    heading = 'Log into your account'
+                    paragraph="Don't have an account? "
+                    linkName="Sign Up"
+                    linkUrl="/auth/signin"
+                    imgUrl="/images/profile-imgs/avatar-male.png"
+                />
 
-            <SignupBody/> 
-        </div>    
+                <SigninBody/> 
+            </div> 
+        </section>  
+       
     )
 }
 

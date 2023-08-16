@@ -19,8 +19,8 @@ const SignOutPage = () => {
     }, []);
 
     return (
-        <div>
-            Signing you out...
+        <div className="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6 flex justify-center">
+            <p className="text-lg">Signing you out...</p>
         </div>
     );
 };

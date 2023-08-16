@@ -10,7 +10,7 @@ export class TicketCreatedListener extends Listener<TicketCreatedEvent>{
     queueGroupName = queueGroupName;
 
     async onMessage(data: { id: string; title: string; price: number; version: number; userId: string; date: string; category: EventCategory; location: { roomType: string; roomId: string; university: string; city: string; state: string; imgUrl: string; }; }, msg: Message) {
-        
+    
         var location: LocationDoc | null = await LocationOrder.findOne({
             roomId: data.location.roomId,
             university: data.location.university,
@@ -18,7 +18,8 @@ export class TicketCreatedListener extends Listener<TicketCreatedEvent>{
             state: data.location.state,   
         });
         
-        if(!location){
+        if(location === null){
+
             location = LocationOrder.build({
                 roomType: data.location.roomType,
                 roomId: data.location.roomId,
@@ -28,6 +29,7 @@ export class TicketCreatedListener extends Listener<TicketCreatedEvent>{
                 imgUrl: data.location.imgUrl, 
             });
             await location.save();
+        
         }
 
         const ticket = TicketOrder.build({
@@ -36,10 +38,10 @@ export class TicketCreatedListener extends Listener<TicketCreatedEvent>{
             price: data.price,
             date: new Date(data.date),
             category: data.category,
-            location,
+            location: location,
         });
-
-        await ticket.save();
+        await ticket.save(); 
+        
 
         msg.ack();
     }

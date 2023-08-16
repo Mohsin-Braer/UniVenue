@@ -4,6 +4,7 @@ import { body } from 'express-validator';
 import mongoose from 'mongoose';
 
 import { TicketOrder } from '../models/tickets';
+import { LocationOrder } from '../models/location';
 import { Order } from '../models/orders';
 
 import { OrderCreatedPublisher } from '../events/publishers/order-created-publisher';

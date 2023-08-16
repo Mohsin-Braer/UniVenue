@@ -3,10 +3,11 @@ import buildClient from '../api/build-client';
 import NavBarHeader from '../components/nav-bar';
 
 const MyApp = ({ Component, pageProps, currentUser }) => { //pass in pageProps (getInitialProps to their respective sub components)
+
     return (
         <div>
-            <NavBarHeader currentUser={currentUser}/>
-            <div className='w-full'>
+            <NavBarHeader currentUser={currentUser} confirmPrint={false}/>
+            <div className='h-screen'>
                 <Component currentUser={currentUser} {...pageProps} />
             </div> 
         </div>

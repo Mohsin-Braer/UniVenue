@@ -32,14 +32,13 @@ const NewTicketPage = () => {
             state,
             imgUrl,
         },
-        onSuccess: (ticket) => Router.push('/'),
-    })
+        onSuccess: () => Router.push('/tickets/show'),
+    });
 
     const onSubmitForm = (event) => {
         event.preventDefault();
 
         doRequest();
-        resetFields();
     }
 
     const onBlur = () => {
@@ -52,41 +51,28 @@ const NewTicketPage = () => {
         setPrice(value.toFixed(2));
     }
 
-    const resetFields = () => {
-        setTitle('');
-        setPrice('');
-        setDate('');
-        setDuration(' ');
-        setCategory('');
-        setRoomId('');
-        setRoomType('');
-        setUniversity('');
-        setCity('');
-        setState(''); 
-        setImgUrl('');
-    }
 
 
     return(
         <div className="h-screen flex">
-            <div className="w-4/12"></div>
-             <div className="w-4/12 items-center justify-center content-center space-y-12">
+             <div className="mx-auto items-center justify-center content-center mt-12">
                 <h1 className="block uppercase tracking-wide text-gray-700 text-lg text-center font-bold mb-2 mt-2">Create a Ticket</h1>
-                <form className="w-full"> 
+                {errors}
+                <form className="w-full" onSubmit={onSubmitForm}> 
                     
                     <div className="flex flex-wrap -mx-3 mb-6">
                         <div className="w-full px-3 mb-6 md:mb-0">
                             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="form-ticket-title">
                                 Title
                             </label>
-                            <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
+                            <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
                                 id="form-ticket-title" 
                                 value={title} 
                                 onChange={(e) => setTitle(e.target.value)}
                                 type="text" 
                                 placeholder="Ticket Name" 
                             />
-                            <p className="text-gray-600 text-xs italic"></p>
+                            <p className="text-gray-600 text-xs italic">Event being hosted in this space. ex. study space or athletic event</p>
                         </div>
                     </div>
 
@@ -190,8 +176,9 @@ const NewTicketPage = () => {
                                         id="form-category"
                                         placeholder=""
                                         value={category}
-                                        onChange={(e) => setCategory(e.target.value)}>
-                                    <option value='' disabled selected>Event Type</option>  
+                                        onChange={(e) => setCategory(e.target.value)}
+                                        defaultValue=''>
+                                    <option value='' disabled>Event Type</option>  
                                     <option value='study'>Study</option>
                                     <option value='sports'>Sports</option>
                                     <option value='lecture'>Lecture</option>
@@ -270,30 +257,32 @@ const NewTicketPage = () => {
                             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="form-img-id">
                                 Image URL
                             </label>
-                            <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
+                            <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
                                 id="form-ticket-price"
                                 value={imgUrl}
                                 type="text" 
                                 placeholder="Image URL" 
                                 onChange={(e) => setImgUrl(e.target.value)}
                             />
-                            
                         </div>
+                        <p className="text-gray-600 text-xs italic px-3">For demo purposes only</p>
+
                     
                     </div>                  
 
-                    {errors}
-
-                    <button class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white focus:ring-4 focus:outline-none focus:ring-green-200"
-                            onSubmit={onSubmitForm}>
-                        <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md group-hover:bg-opacity-0">
-                            Submit
+            
+                
+                    <button className="relative inline-flex items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium text-primary-600 transition duration-300 ease-out border-2 border-primary-500 rounded-full shadow-md group">
+                        <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-primary-500 group-hover:translate-x-0 ease">
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                         </span>
+                        <span className="absolute flex items-center justify-center w-full h-full text-primary-500 transition-all duration-300 transform group-hover:translate-x-full ease">Submit</span>
+                        <span className="relative invisible"> Button Text </span>
                     </button>
+              
 
                 </form>
             </div>
-            <div className="w-4/12"></div>
         </div>
            
             

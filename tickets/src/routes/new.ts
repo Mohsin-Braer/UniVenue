@@ -55,6 +55,23 @@ router.post('/api/tickets', requireAuth, [
     const {title, price, date, category, roomType, roomId, university, city, state, imgUrl} = req.body;
 
 
+    const newUniversity = await Location.findOne({
+        roomType: 'Display', 
+        roomId: 'Display',
+        university
+    })
+
+    if(newUniversity === null){
+        await Location.build({
+            roomType: 'Display', 
+            roomId: 'Display',
+            university,
+            city,
+            state, 
+            imgUrl
+        }).save()
+    }
+
     var location: LocationDoc | null = await Location.findOne({
         roomId,
         university,
@@ -62,7 +79,7 @@ router.post('/api/tickets', requireAuth, [
         state,   
     });
     
-    if(!location){
+    if(location === null){
         location = Location.build({
             roomType,
             roomId,
@@ -102,7 +119,7 @@ router.post('/api/tickets', requireAuth, [
             university: location.university,
             city: location.city,
             state: location.state,
-            imgUrl: location.imageUrl,
+            imgUrl: location.imgUrl,
         },
     });
 

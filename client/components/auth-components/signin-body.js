@@ -31,40 +31,41 @@ const SigninBody = () => {
     const onSubmit = async (event) => {
         event.preventDefault();
 
-        doRequest();
+        await doRequest();
     };
 
 
 
     return(
-        <form onSubmit={onSubmit} className="mt-6 space-y-6 md:justify-center mx-20">
-            <div className="">
+             <form onSubmit={onSubmit} className="mt-6 space-y-6 md:justify-center">
+                
 
-                {errors} 
+                    {errors} 
 
-                <AuthInput
-                    handleChange={ handleEmailChange}
-                    value={values[0]}
-                    labelText='Email Address'
-                    isRequired={true}
-                    placeholder='Email Address'
-                />
+                    <AuthInput
+                        handleChange={ handleEmailChange}
+                        value={values[0]}
+                        labelText='Email Address'
+                        isRequired={true}
+                        placeholder='Email Address'
+                    />
 
-                <AuthInput
-                    handleChange={handlePasswordChange}
-                    value={values[1]}
-                    labelText='Password'
-                    type= 'password'
-                    isRequired={true}
-                    placeholder='Password'
-                />
+                    <AuthInput
+                        handleChange={handlePasswordChange}
+                        value={values[1]}
+                        labelText='Password'
+                        type= 'password'
+                        isRequired={true}
+                        placeholder='Password'
+                    />
+                
             
-            </div>
-            <button
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 mt-10">
-                Sign In
-            </button>
-        </form>
+                <button
+                    className="group relative mx-auto w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 mt-10">
+                    Sign In
+                </button>
+            </form>
+       
 
     )
 }

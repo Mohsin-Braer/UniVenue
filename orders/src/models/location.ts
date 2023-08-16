@@ -17,7 +17,7 @@ export interface LocationDoc extends mongoose.Document{
     city: string;
     state: string;
     country?: string;
-    imageUrl: string;
+    imgUrl: string;
 }
 
 interface LocationModel extends mongoose.Model<LocationDoc>{

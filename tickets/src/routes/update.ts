@@ -23,7 +23,7 @@ router.put('/api/tickets/:id', requireAuth, [
         .withMessage('Must provide valid price')
 ], validateRequest, async (req: Request, res: Response) => {
     
-    const ticket = await Ticket.findById(req.params.id);
+    const ticket = await Ticket.findById(req.params.id).populate('location');
 
     if(!ticket){
         throw new NotFoundError();
