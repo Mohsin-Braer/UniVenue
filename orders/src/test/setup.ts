@@ -15,7 +15,7 @@ beforeAll(async () => {  //A hook that runs before any else is executed in the f
     process.env.JWT_KEY = 'admndfndfask';
     process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
-    const mongo = await MongoMemoryServer.create();
+    mongo = await MongoMemoryServer.create();
     const mongoUri = mongo.getUri();
 
     await mongoose.connect(mongoUri, {});
