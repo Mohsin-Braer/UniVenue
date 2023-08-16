@@ -3,7 +3,7 @@ import { app } from "../../app";
 
 it('returns a cookie on successful sign in', async () => {
     await request(app)
-        .post('api/users/signup')
+        .post('/api/users/signup')
         .send({
             email: 'temp@temp.com',
             password: 'password'
@@ -11,7 +11,7 @@ it('returns a cookie on successful sign in', async () => {
         .expect(201); 
 
     const response =  await request(app)
-        .post('api/users/signin')
+        .post('/api/users/signin')
         .send({
             email: 'temp@temp.com',
             password: 'password'
@@ -23,7 +23,7 @@ it('returns a cookie on successful sign in', async () => {
 
 it('returns a 400 when email supplied does not exist', async () => {
     return request(app)
-        .post('api/users/signin')
+        .post('/api/users/signin')
         .send({
             email: 'temp@temp.com',
             password: 'password'
@@ -33,7 +33,7 @@ it('returns a 400 when email supplied does not exist', async () => {
 
 it('returns a 400 when password supplied does not exist', async () => {
     await request(app)
-        .post('api/users/signup')
+        .post('/api/users/signup')
         .send({
             email: 'temp@temp.com',
             password: 'password'
@@ -41,7 +41,7 @@ it('returns a 400 when password supplied does not exist', async () => {
         .expect(201); 
 
     await request(app)
-        .post('api/users/signin')
+        .post('/api/users/signin')
         .send({
             email: 'temp@temp.com',
             password: 'pass123'

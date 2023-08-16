@@ -34,7 +34,7 @@ it('can fetch a list of tickets', async () => {
         .send()
         .expect(200)
     
-    expect(response.body.length).toBe(3);
+    expect(response.body.tickets.length).toBe(3);
 
     
 });
