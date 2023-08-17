@@ -1,7 +1,9 @@
 name: tests-payments
 
 on:
-  pull_request
+  pull_request:
+    paths: #run test only if changes are made to payments service
+        - 'payments/**'
 
 jobs:
   build:
