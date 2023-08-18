@@ -62,7 +62,7 @@ it('returns 400 when purchasing order thats has been cancelled', async () => {
         .expect(400)
 });
 
-//TEST REQUIRES STRIPE SECRET KEY WHICH IS NOT AVAILABLE AT TEST
+//REQUIRES STRIPE SECRET KEY
 // it('returns 201 when purchasing order with valid token and orderId', async () => {
     
 //     const userId = new mongoose.Types.ObjectId().toHexString();
