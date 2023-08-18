@@ -8,6 +8,7 @@ import { OrderCancelledListener } from './events/listeners/order-cancelled-liste
 
 
 const start = async () => {
+    console.log('Starting up...');
     if(!process.env.JWT_KEY){   // TS will give an error if we don't check to see this value actually exists
         throw new Error("No key 'JWT_KEY' found");
     }

@@ -169,8 +169,8 @@ const LandingPage = ({currentUser}) => {
                             <p className="text-gray-500 dark:text-gray-400">This service handles maintenance of 15 min timers set once an order has been started by a user.</p>
                             <p className="text-gray-600 dark:text-gray-400 font-semibold mt-2">Responsibilities:</p>
                             <ul className="text-gray-500 dark:text-gray-400 ml-1">
-                                <li>1. Management of individual timers is handled utilizing a priority job queue system provided through the Bull NodeJS library</li>
-                                <li>2. Publishes event notifying other associated service about timer expiration</li>
+                                <li>1. Management of individual timers is handled utilizing a priority job queue system provided through the Bull NodeJS library.</li>
+                                <li>2. Publishes event notifying other associated service about timer expiration.</li>
                             </ul>
                         </div>
                         <div>
