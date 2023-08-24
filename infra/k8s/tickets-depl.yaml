@@ -21,7 +21,7 @@ spec:
             - name: NATS_URL
               value: 'http://nats-srv:4222' 
             - name: NATS_CLUSTER_ID
-              value: ticketing 
+              value: univenue 
             - name: NATS_CLIENT_ID
               valueFrom: # take pod name and use as client id
                 fieldRef:
