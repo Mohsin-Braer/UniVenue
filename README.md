@@ -94,7 +94,7 @@ This mobile-responsive application embodies an <b>event-driven architecture</b>,
 
 ## Getting Started
 
-To check out the web application, check it out <a src={www.univenue-app-prod.site}>HERE</a>
+To check out the web application, check it out <a href='www.univenue-app-prod.site'>HERE</a>
 
 To play around with the codebase, lets do the following...  
 
