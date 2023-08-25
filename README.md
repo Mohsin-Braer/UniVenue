@@ -34,7 +34,7 @@
 
 ## About The Project
 
-[![UniVenue Landing Page][landing-page-src]](www.univenue-app-prod.site)
+[![UniVenue Landing Page][landing-page-src]](http://www.univenue-app-prod.site)
 
 UniVenue empowers universities with the ultimate platform tool to enable seamless space leasing opportunities and unlocking new realms of collaboration and revenue generation. Verified students, alumni, and organizations within the network can leverage our platform to lease out unused spaces for meetings, workshops, and even stadium-sized events. Admin accounts associated with each university will have the ability to publish a variety of different spaces (study tables, classrooms, lecture halls, indoor arenas, outdoor stadiums, etc.) for a variety of different occasions (study, meeting, community event, large-scale event, etc.) and for a desired duration. seats and venues are published through the form of tickets. Students and alumni verified through a university ID or university email will have the ability to reserve an available venue at any of the network institutions for a given duration. Once an order is made for that space, an admin account from the given institution must then make the approval to finalize the order and complete the purchase. Confirmation of a reservation will be sent to the user in the form of a ticket. In the case of this demo, as the user, you will be able to sign in and log in to multiple accounts, create tickets, browse through available space catalog, create an order for a ticket, and make a payment to successfully claim a ticket.
 
@@ -44,27 +44,27 @@ This mobile-responsive application embodies an <b>event-driven architecture</b>,
 <b>GitHub Actions</b> was integrated into this project as an essential automated workflow tool. By leveraging its capabilities, I streamlined UniVenue's development processes, enabling automatic builds, tests, and deployments. This not only bolstered our code quality through consistent testing but also expedited the delivery pipeline, promoting overall project efficiency. <b>DigitalOcean</b> was utilized as the cloud host solution of choice to host out Kubernetes cluster due to its robust (and budget friendly) Kubernetes offering. The platform's straightforward management tools, along with its reliable infrastructure, provided a seamless environment for orchestrating containerized applications while minimizing administrative overhead.
 
 ### System Design & Services
-[![UniVenue Landing Page][system-design-src]](www.univenue-app-prod.site)
+[![UniVenue Landing Page][system-design-src]](http://www.univenue-app-prod.site)
 
 ### Services
-[![UniVenue Landing Page][system-services-src]](www.univenue-app-prod.site)
+[![UniVenue Landing Page][system-services-src]](http://www.univenue-app-prod.site)
 
 <b>** A custom built npm package ('@crescenttheater/common') was utilized to house all common methods and functionality shared between the different services to avoid repition within the repository **</b>
 
 ### Landing Page
-[![UniVenue Landing Page][landing-page-src]](www.univenue-app-prod.site)
+[![UniVenue Landing Page][landing-page-src]](http://www.univenue-app-prod.site)
 ### Marketplace
-[![UniVenue Marketplace Page][marketplace-page-src]](www.univenue-app-prod.site)
+[![UniVenue Marketplace Page][marketplace-page-src]](http://www.univenue-app-prod.site)
 ### Ticket Details Page
-[![UniVenue Ticket Details Page][ticket-details-src]](www.univenue-app-prod.site)
+[![UniVenue Ticket Details Page][ticket-details-src]](http://www.univenue-app-prod.site)
 ### Order Timer & Payment Page
-[![UniVenue Ticket Details Page][order-timer-src]](www.univenue-app-prod.site)
+[![UniVenue Ticket Details Page][order-timer-src]](http://www.univenue-app-prod.site)
 ### Order History Page
-[![UniVenue Order History Page][order-history-src]](www.univenue-app-prod.site)
+[![UniVenue Order History Page][order-history-src]](http://www.univenue-app-prod.site)
 ### Sign-in page
-[![UniVenue Sign In Page][sign-in-src]](www.univenue-app-prod.site)
+[![UniVenue Sign In Page][sign-in-src]](http://www.univenue-app-prod.site)
 ### Sign-up page
-[![UniVenue Sign Up Page][sign-up-src]](www.univenue-app-prod.site)
+[![UniVenue Sign Up Page][sign-up-src]](http://www.univenue-app-prod.site)
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
