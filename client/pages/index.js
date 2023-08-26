@@ -208,7 +208,7 @@ const LandingPage = ({currentUser}) => {
                 <div className="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
                     <div className="mx-auto max-w-screen-sm text-center mb-10">
                         <h2 className="mb-4 text-4xl font-extrabold leading-tight text-gray-900 dark:text-white">System Design Preview</h2>
-                        <p className="mb-6 font-light text-gray-500 dark:text-gray-400 md:text-lg">For more, check out our <a href="" className="text-primary-400 hover:text-primary-600">GitHub Repository</a></p>
+                        <p className="mb-6 font-light text-gray-500 dark:text-gray-400 md:text-lg">For more, check out our <a href="https://github.com/Mohsin-Braer/UniVenue" className="text-primary-400 hover:text-primary-600">GitHub Repository</a></p>
                     </div>
                     <div className="p-9">
                         <img src='/images/landing-page-imgs/UniVenue-system-design.png' className="h-auto max-w-full border-2 shadow-lg dark:shadow-black/30"></img>
@@ -227,7 +227,7 @@ const LandingPage = ({currentUser}) => {
                         <div className="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
                                 <div className="mb-8 max-w- text-center lg:mb-16">
                                     <h2 className="mb-4 text-4xl font-extrabold text-gray-900 dark:text-white">Major Technologies Utilized</h2>
-                                    <p className="mb-6 font-light text-gray-500 dark:text-gray-400 md:text-lg">For the full list, check out our <a href="" className="text-primary-400 hover:text-primary-600">GitHub Repository</a></p>
+                                    <p className="mb-6 font-light text-gray-500 dark:text-gray-400 md:text-lg">For the full list, check out our <a href="https://github.com/Mohsin-Braer/UniVenue" className="text-primary-400 hover:text-primary-600">GitHub Repository</a></p>
                                 </div>
                                 <div className="space-y-8 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-12 md:space-y-0">
                                     <div>
