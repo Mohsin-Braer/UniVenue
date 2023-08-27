@@ -448,7 +448,6 @@ const LandingPage = ({currentUser}) => {
         </div> 
     )
 
-
 }
 
 LandingPage.getInitialProps = async (context, client, currentUser) => {
