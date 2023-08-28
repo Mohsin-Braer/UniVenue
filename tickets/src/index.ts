@@ -367,6 +367,3 @@ const initialTicketList = async () => {
 initialCollegeList();
 initialTicketList();
 
-
-
-
