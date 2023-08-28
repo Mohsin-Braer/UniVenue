@@ -190,7 +190,7 @@ const LandingPage = ({currentUser}) => {
                             
                         </div>
                         <div className="col-start-3 inline-flex items-end justify-end">
-                            <a href="" className="inline-flex items-center font-medium text-primary-600 hover:text-primary-800 dark:text-primary-500 dark:hover:text-primary-700 mt-4 animate-hbounce">
+                            <a href="https://github.com/Mohsin-Braer/UniVenue" className="inline-flex items-center font-medium text-primary-600 hover:text-primary-800 dark:text-primary-500 dark:hover:text-primary-700 mt-4 animate-hbounce">
                                 More Details
                                 <svg className="ml-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path></svg>
                             </a>
@@ -370,7 +370,7 @@ const LandingPage = ({currentUser}) => {
                        
                         <div className="py-5 mx-auto max-w-screen-xl pb-20">
                             <div className="mx-auto text-center"> 
-                                <a href="" className="relative inline-flex items-center px-12 py-3 overflow-hidden text-lg font-medium text-primary-600 border-2 border-primary-600 rounded-full hover:text-white group hover:bg-gray-50">
+                                <a href="https://github.com/Mohsin-Braer/UniVenue" className="relative inline-flex items-center px-12 py-3 overflow-hidden text-lg font-medium text-primary-600 border-2 border-primary-600 rounded-full hover:text-white group hover:bg-gray-50">
                                     <span className="absolute left-0 block w-full h-0 transition-all bg-primary-600 opacity-100 group-hover:h-full top-1/2 group-hover:top-0 duration-400 ease"></span>
                                     <span className="absolute right-0 flex items-center justify-start w-10 h-10 duration-300 transform translate-x-full group-hover:translate-x-0 ease">
                                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
