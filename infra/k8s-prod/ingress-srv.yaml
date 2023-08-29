@@ -80,6 +80,4 @@ spec:
     app.kubernetes.io/instance: ingress-nginx
     app.kubernetes.io/component: controller
 
-
     
-        
