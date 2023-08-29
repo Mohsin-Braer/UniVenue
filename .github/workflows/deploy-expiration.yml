@@ -11,15 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: cd expiration && docker build -t mbraer/expiration .
       - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
         env: 
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      - run: cd expiration && docker build -t mbraer/expiration .
       - run: docker push mbraer/expiration
       - uses: digitalocean/action-doctl@v2 #set of commands to setup doctl in github container
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - run: cd expiration && docker build -t mbraer/expiration .
       - run: doctl kubernetes cluster kubeconfig save univenue
       - run: kubectl rollout restart deployment expiration-depl
 
