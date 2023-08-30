@@ -24,5 +24,3 @@ spec:
                   name: jwt-secret
                   key: JWT_KEY
 
-                 
-                 
